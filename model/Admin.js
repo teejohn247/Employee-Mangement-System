@@ -1,0 +1,31 @@
+import mongoose from 'mongoose';
+import moment from 'moment';
+
+const AdminSchema = new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
+    email:{
+        type:String,
+        required:true,
+    },
+    password:{
+        type:String,
+        required:true
+    },
+    avatar:{
+        type:String,
+    },
+    admin:{
+        type:Boolean,
+        default:true
+    },
+    date:{
+        type: Date,
+        default:moment().format('YYYY-MM-DD')
+    }
+});
+
+const Admin = mongoose.model("admin", AdminSchema);
+export default Admin;

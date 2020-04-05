@@ -7,7 +7,7 @@ const name = document.querySelector(".admin_name");
 
 signup.addEventListener("submit", event => {
     fetch(
-    "http://localhost:5000/api/v1/admin/signup", {
+    "https://ems-employee-management-system.herokuapp.com/api/v1/admin/signup", {
         method: "POST",
 		headers: {
 			"Content-Type": "application/json"
@@ -27,7 +27,7 @@ signup.addEventListener("submit", event => {
                 console.log(data);
 				localStorage.setItem("authToken", JSON.stringify(data.token));
                 localStorage.setItem("admin", data.admin);
-				window.location = "../UI/dashboard.html";
+				window.location = "../UI/dashboard-3.html";
 			}
 			})
 		.catch(error => console.log(error.message));

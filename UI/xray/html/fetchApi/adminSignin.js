@@ -6,7 +6,7 @@ const password = document.querySelector(".password");
 
 signin.addEventListener("submit", event => {
     fetch(
-    "http://localhost:5000/api/v1/admin", {
+    "https://ems-employee-management-system.herokuapp.com/api/v1/admin", {
         method: "POST",
 		headers: {
 			"Content-Type": "application/json"
@@ -21,7 +21,7 @@ signin.addEventListener("submit", event => {
           console.log(data);
 				localStorage.setItem("authToken", JSON.stringify(data.token));
                 // localStorage.setItem("admin", data.admin);
-				window.location = "../html/dashboard-1.html";
+				window.location = "../html/dashboard-3.html";
         // loginError.style.display = " block";
 				// setTimeout(() => {
 				// 	loginError.style.display = "none";

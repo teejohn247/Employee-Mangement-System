@@ -21,7 +21,7 @@ window.onload = () => {
     }   
         const token = JSON.parse(localStorage.getItem('authToken'));
     fetch(
-     "http://localhost:5000/api/v1/history", {
+     "https://ems-employee-management-system.herokuapp.com/api/v1/history", {
       method: 'GET',
       headers: {
           "Authorization": token

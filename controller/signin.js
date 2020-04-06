@@ -4,7 +4,7 @@ import User from '../model/User';
 import AdminRecords from '../model/AdminRecords';
 import utils from '../config/utils';
 import macaddress from 'macaddress';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 dotenv.config();
 
@@ -34,13 +34,13 @@ const signin = async(req, res) => {
         })
         return;
     }
-     let clockOut = moment().format('YYYY-MM-DD');
+     let clockOut = moment().tz('Africa/Lagos').format('YYYY-MM-DD');
      console.log(clockOut);
      console.log(user.date);
     //  console.log(user.clock_out_time.format('YYYY-MM-DD'));
-     console.log(moment().format('YYYY-MM-DD'));
+     console.log(moment().tz('Africa/Lagos').format('YYYY-MM-DD'));
 
-    const history = await AdminRecords.findOne({ email, date: moment().format('YYYY-MM-DD') });
+    const history = await AdminRecords.findOne({ email, date: moment().tz('Africa/Lagos').format('YYYY-MM-DD') });
 
 
         // if(history){
@@ -69,8 +69,8 @@ const signin = async(req, res) => {
         mac_address: user.mac_address,
         department: user.department,
         password: user.password,
-        date: moment().format('YYYY-MM-DD'),
-        clock_in_time: moment().format('hh:mm a'),
+        date: moment().tz('Africa/Lagos').format('YYYY-MM-DD'),
+        clock_in_time: moment().tz('Africa/Lagos').format('hh:mm a'),
         // clock_out: user.date
     });
     // console.log(adminrecord)
@@ -78,7 +78,7 @@ const signin = async(req, res) => {
     console.log(adminrecords.clock_in_time);
 
     
-    const adminrecord = await AdminRecords.findOne({ email, date: moment().format('YYYY-MM-DD') });
+    const adminrecord = await AdminRecords.findOne({ email, date: moment().tz('Africa/Lagos').format('YYYY-MM-DD') });
     //  console.log(adminrecord);
 
     //  if(adminrecord){
@@ -93,7 +93,7 @@ const signin = async(req, res) => {
 
     await adminrecords.save();
     console.log('okay')
-    const adminrecordd = await AdminRecords.findOne({ email, date: moment().format('YYYY-MM-DD') });
+    const adminrecordd = await AdminRecords.findOne({ email, date: moment().tz('Africa/Lagos').format('YYYY-MM-DD') });
     console.log(adminrecordd);
 
 
@@ -120,7 +120,7 @@ const signin = async(req, res) => {
      res.status(200).json({
          token,
          user,
-         clock_in_time: moment().format('hh:mm a')
+         clock_in_time: moment().tz('Africa/Lagos').format('hh:mm a')
      })
      console.log(token);
  }catch(err){

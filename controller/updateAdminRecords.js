@@ -4,13 +4,14 @@ import AdminRecords from '../model/AdminRecords';
 import gravatar from 'gravatar';
 import utils from '../config/utils';
 import admin from './admin';
-import moment from 'moment';
+import moment from 'moment-timezone';
+
 
 
 const updateAdminRecords = async (req, res) => {
   try {
-        const adminrecords = await AdminRecords.findOne({user_id:req.payload.id, date: moment().format('YYYY-MM-DD')});
-        console.log(moment().format('YYYY-MM-DD'))
+        const adminrecords = await AdminRecords.findOne({user_id:req.payload.id, date: moment().tz('Africa/Lagos').format('YYYY-MM-DD')});
+        console.log(moment().tz('Africa/Lagos').format('YYYY-MM-DD'))
         console.log(adminrecords)
 
         // let clockOut = adminrecords.clock_out.toLocaleString().split('/')[0];
@@ -37,7 +38,7 @@ const updateAdminRecords = async (req, res) => {
             return
         }
         console.log(adminrecords)
-        adminrecords.updateOne({date:moment().format('YYYY-MM-DD'), clock_out_time: moment().format('hh:mm a')}, adminrecords).then(
+        adminrecords.updateOne({date:moment().tz('Africa/Lagos').format('YYYY-MM-DD'), clock_out_time: moment().tz('Africa/Lagos').format('hh:mm a')}, adminrecords).then(
             () => {
               res.status(200).json({
                 adminrecords

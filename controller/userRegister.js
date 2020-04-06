@@ -4,7 +4,8 @@ import User from '../model/User';
 import gravatar from 'gravatar';
 import utils from '../config/utils';
 import macaddress from 'macaddress';
-import moment from 'moment';
+import moment from 'moment-timezone';
+
 // var macaddress = require('macaddress');
 
 dotenv.config();
@@ -29,7 +30,7 @@ const userRegister = async (req, res) => {
             return mac; 
           });
           console.log(macAddress);
-          console.log(moment().format('YYYY-MM-DD'));
+          console.log(moment().tz('Africa/Lagos').format('YYYY-MM-DD'));
 
         let user = await User.findOne({ email });
         // console.log(user)
@@ -62,7 +63,7 @@ const userRegister = async (req, res) => {
             department:req.body.department,
             mac_address: macAddress,
             password: hashed, 
-            date: moment().format('YYYY-MM-DD')
+            date: moment().tz('Africa/Lagos').format('YYYY-MM-DD')
         });
 // console.log(admin);
 

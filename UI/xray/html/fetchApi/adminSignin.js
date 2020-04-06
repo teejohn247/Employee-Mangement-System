@@ -1,7 +1,7 @@
 const signin = document.querySelector(".signin");
 const email = document.querySelector(".email");
 const password = document.querySelector(".password");
-// const loginError = document.querySelector(".login-error");
+const loginError = document.querySelector(".login-error");
 
 
 signin.addEventListener("submit", event => {
@@ -27,6 +27,12 @@ signin.addEventListener("submit", event => {
 				// 	loginError.style.display = "none";
 				// }, 3000);
 			} else {
+				loginError.innerHTML = data.error;
+			loginError.style.display = "block";
+
+				setTimeout(() => {
+					loginError.style.display = "none";
+				}, 3000);
                 // console.log(data);
 				// localStorage.setItem("authToken", JSON.stringify(data.token));
                 // // localStorage.setItem("admin", data.admin);

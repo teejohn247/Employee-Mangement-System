@@ -1,12 +1,13 @@
 const signin = document.querySelector(".signin");
 const email = document.querySelector(".email");
 const password = document.querySelector(".password");
-// const loginError = document.querySelector(".login-error");
+const loginError = document.querySelector(".login-error");
+
 
 
 signin.addEventListener("submit", event => {
     fetch(
-    "https://ems-employee-management-system.herokuapp.com/api/v1/user/signin", {
+    "https://ems-employee-management-system.herokuapp.com/api/user/signin", {
         method: "POST",
 		headers: {
 			"Content-Type": "application/json"
@@ -16,8 +17,10 @@ signin.addEventListener("submit", event => {
 	})
 		.then(res => res.json())
 		.then(data => {
-            console.log(data);
-      if (data.token) {
+			console.log(data);
+			if (data.status == 200) {
+			
+     
 		  console.log(data);
 		  console.log(data.clock_in_time)
 		  console.log(data.user)
@@ -33,11 +36,15 @@ signin.addEventListener("submit", event => {
                 localStorage.setItem("clock_in_time", data.clock_in_time);
 				
 				window.location = "../html/dashboard-3.html";
-        // loginError.style.display = " block";
-				// setTimeout(() => {
-				// 	loginError.style.display = "none";
-				// }, 3000);
-			} else {
+       
+			
+		 } else {
+			loginError.innerHTML = data.error;
+			loginError.style.display = "block";
+
+				setTimeout(() => {
+					loginError.style.display = "none";
+				}, 3000);
                 // console.log(data);
 				// localStorage.setItem("authToken", JSON.stringify(data.token));
                 // // localStorage.setItem("admin", data.admin);

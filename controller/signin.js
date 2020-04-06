@@ -16,7 +16,7 @@ const signin = async(req, res) => {
      if(!user){
          res.status(404).json({
              status: 404,
-             error: 'user not found'
+             error: 'Incorrect Email or Password'
          })
          return;
      }
@@ -43,13 +43,13 @@ const signin = async(req, res) => {
     const history = await AdminRecords.findOne({ email, date: moment().tz('Africa/Lagos').format('YYYY-MM-DD') });
 
 
-        // if(history){
-        //     res.status(403).json({
-        //         status:403,
-        //         msg:"You can't clock in more than once in a day"
-        //     })
-        //     return;
-        // }
+        if(history){
+            res.status(403).json({
+                status:403,
+                error:"You can't clock in more than once in a day"
+            })
+            return;
+        }
        
         
     //  console.log(user)
@@ -81,13 +81,13 @@ const signin = async(req, res) => {
     const adminrecord = await AdminRecords.findOne({ email, date: moment().tz('Africa/Lagos').format('YYYY-MM-DD') });
     //  console.log(adminrecord);
 
-    //  if(adminrecord){
-    //     res.status(403).json({
-    //         status:403,
-    //         msg:"You ve already logged in on this device"
-    //     })
-    //     return;
-    // }
+     if(adminrecord){
+        res.status(403).json({
+            status:403,
+            error:"You ve already logged in on this device"
+        })
+        return;
+    }
 
 
 
@@ -101,7 +101,7 @@ const signin = async(req, res) => {
      if(!adminrecordd){
          res.status(404).json({
              status: 404,
-             error: 'user not found'
+             error: 'Invalid Login Credentials'
          })
          return;
      }

@@ -3,7 +3,7 @@ const email = document.querySelector(".email");
 const department = document.querySelector(".department");
 const password = document.querySelector(".password");
 const name = document.querySelector(".user_name");
-// const loginError = document.querySelector(".login-error");
+const loginError = document.querySelector(".login-error");
 
 
 signup.addEventListener("submit", event => {
@@ -20,10 +20,12 @@ signup.addEventListener("submit", event => {
 		.then(data => {
             console.log(data);
       if (data.status !== 201) {
-        // loginError.style.display = " block";
-				// setTimeout(() => {
-				// 	loginError.style.display = "none";
-				// }, 3000);
+        loginError.innerHTML = data.error;
+			loginError.style.display = "block";
+
+				setTimeout(() => {
+					loginError.style.display = "none";
+				}, 3000);
 			} else {
                 console.log(data);
                 // localStorage.setItem("admin", data.admin);

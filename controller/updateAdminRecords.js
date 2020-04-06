@@ -26,14 +26,14 @@ const updateAdminRecords = async (req, res) => {
         if(!adminrecords){
             res.status(404).json({
                 status:404,
-                msg:'No user Found'
+                error:'No user Found'
             })
             return
         }
         if(adminrecords.clock_out_time){
             res.status(404).json({
                 status:403,
-                msg:'You have clocked out already'
+                error:'You have clocked out already'
             })
             return
         }

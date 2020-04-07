@@ -118,6 +118,7 @@ const signin = async(req, res) => {
    
      const token = utils.encodeToken( user.id, user.name );
      res.status(200).json({
+         status: 200,
          token,
          user,
          clock_in_time: moment().tz('Africa/Lagos').format('hh:mm a')

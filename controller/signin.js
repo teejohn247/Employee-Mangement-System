@@ -43,13 +43,13 @@ const signin = async(req, res) => {
     const history = await AdminRecords.findOne({ email, date: moment().tz('Africa/Lagos').format('YYYY-MM-DD') });
 
 
-        if(history){
-            res.status(403).json({
-                status:403,
-                error:"You can't clock in more than once in a day"
-            })
-            return;
-        }
+        // if(history){
+        //     res.status(403).json({
+        //         status:403,
+        //         error:"You can't clock in more than once in a day"
+        //     })
+        //     return;
+        // }
        
         
     //  console.log(user)

@@ -34,7 +34,7 @@ event.preventDefault();
 
     
     fetch(
-     `http://localhost:5000/api/v1/edit-profile`, {
+     `https://ems-employee-management-system.herokuapp.com/api/v1/edit-profile`, {
       method: 'PATCH',
       headers: {
         "Content-Type": 'application/json', 
@@ -89,7 +89,7 @@ event.preventDefault();
 
             
             fetch(
-             `http://localhost:5000/api/v1/change-password`, {
+             `https://ems-employee-management-system.herokuapp.com/api/v1/change-password`, {
               method: 'PATCH',
               headers: {
                 "Content-Type": 'application/json', 

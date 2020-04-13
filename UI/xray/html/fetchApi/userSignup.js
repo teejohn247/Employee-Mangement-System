@@ -8,7 +8,7 @@ const loginError = document.querySelector(".login-error");
 
 signup.addEventListener("submit", event => {
     fetch(
-    "http://localhost:5000/api/v1/register", {
+    "https://ems-employee-management-system.herokuapp.com/api/v1/register", {
         method: "POST",
 		headers: {
 			"Content-Type": "application/json"

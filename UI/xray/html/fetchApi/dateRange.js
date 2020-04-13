@@ -35,7 +35,7 @@ $(document).on('click', '#clock_in', function() {
     $( "#loading_filter" ).show();
     const token = JSON.parse(localStorage.getItem('authToken'));
             fetch(
-             `http://localhost:5000/api/v1/clock-in`, {
+             `https://ems-employee-management-system.herokuapp.com/api/v1/clock-in`, {
               method: 'PATCH',
               headers: {
                 "Content-Type": 'application/json', 
@@ -75,7 +75,7 @@ $(document).on('click', '#clock_out', function() {
     $( "#loading_filter" ).show();
     const token = JSON.parse(localStorage.getItem('authToken'));
             fetch(
-             `http://localhost:5000/api/v1/update`, {
+             `https://ems-employee-management-system.herokuapp.com/api/v1/update`, {
               method: 'PATCH',
               headers: {
                 "Content-Type": 'application/json', 
@@ -86,7 +86,11 @@ $(document).on('click', '#clock_out', function() {
                 .then(response => {
                   console.log(response)
                   if (response.status === 200) {
+<<<<<<< HEAD
                       $('.tm').html(`You have clocked out for the day`);
+=======
+                      $('.tm').html(`Your have clocked out for the day`);
+>>>>>>> b606f0e5a30a0aa67d66c6eb676aabfde221ab7f
                       $('.tm').css('color', 'green');
                       $( "#loading_filter" ).hide();
                       $('.tm').show();

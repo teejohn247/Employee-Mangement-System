@@ -41,6 +41,7 @@ const updateAdminRecords = async (req, res) => {
         adminrecords.updateOne({date:moment().tz('Africa/Lagos').format('YYYY-MM-DD'), clock_out_time: moment().tz('Africa/Lagos').format('hh:mm a')}, adminrecords).then(
             () => {
               res.status(200).json({
+                status:200,
                 adminrecords
               });
             }

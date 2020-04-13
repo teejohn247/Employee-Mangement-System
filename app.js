@@ -18,7 +18,7 @@ dotenv.config();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'));
 
 app.use(cors());
 app.options('*', cors());

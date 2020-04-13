@@ -86,11 +86,7 @@ $(document).on('click', '#clock_out', function() {
                 .then(response => {
                   console.log(response)
                   if (response.status === 200) {
-<<<<<<< HEAD
-                      $('.tm').html(`You have clocked out for the day`);
-=======
                       $('.tm').html(`Your have clocked out for the day`);
->>>>>>> b606f0e5a30a0aa67d66c6eb676aabfde221ab7f
                       $('.tm').css('color', 'green');
                       $( "#loading_filter" ).hide();
                       $('.tm').show();

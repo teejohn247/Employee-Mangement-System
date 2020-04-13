@@ -33,10 +33,6 @@ const downloadCsv = async(req, res) => {
             fs.unlinkSync(filePath); // delete this file after 30 seconds
           }, 60000)
           return res.json("/exports/csv-" + dateTime + ".csv");
-          res.status(500).json({
-            status:500,
-            err:'server error'
-        })
         }
       });
 

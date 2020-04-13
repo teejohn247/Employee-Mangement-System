@@ -86,7 +86,7 @@ $(document).on('click', '#clock_out', function() {
                 .then(response => {
                   console.log(response)
                   if (response.status === 200) {
-                      $('.tm').html(`Your clock in time for today is ${response.clock_in_time}`);
+                      $('.tm').html(`You have clocked out for the day`);
                       $('.tm').css('color', 'green');
                       $( "#loading_filter" ).hide();
                       $('.tm').show();

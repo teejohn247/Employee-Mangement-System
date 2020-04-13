@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import moment from 'moment'
 
+
+
 const UserSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -27,6 +29,18 @@ const UserSchema = new mongoose.Schema({
     clock_out:{
         type:Date,
     },
+    gender:{
+        type:String,
+    },
+    address:{
+        type:String,
+    },
+    age:{
+        type:String,
+    },
+    state_of_origin:{
+        type:String,
+    },
     admin:{
         type:Boolean,
         default:false
@@ -34,6 +48,10 @@ const UserSchema = new mongoose.Schema({
     date:{
         type:String,
         // default:moment().format('YYYY-MM-DD')
+    },
+    creation_date:{
+        type: Date,
+        default: new Date()
     }
 });
 

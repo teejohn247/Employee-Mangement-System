@@ -36,11 +36,27 @@ const AdminRecordsSchema = new mongoose.Schema({
         type: String,
         required:true
     },
+    gender:{
+        type:String,
+    },
+    address:{
+        type:String,
+    },
+    age:{
+        type:String,
+    },
+    state_of_origin:{
+        type:String,
+    },
     clock_in_time:{
         type: String,
     },
     clock_out_time:{
         type: String,
+    },
+    creation_date:{
+        type: Date,
+        default: new Date()
     }
 });
 

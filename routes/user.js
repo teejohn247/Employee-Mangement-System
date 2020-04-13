@@ -9,7 +9,13 @@ import records from '../controller/adminRecords';
 import updateAdminRecords from '../controller/updateAdminRecords';
 import adminView from '../controller/adminView';
 import userHistory from '../controller/userHistory';
-// import getSpecific from '../controller/getSpecific';
+import filterDate from '../controller/filterDate';
+import editProfile from '../controller/editProfile';
+import userClockIn from '../controller/userClockIn';
+import changePassword from '../controller/changePassword';
+import csv from '../controller/downloadCsv';
+
+
 // import exp from '../controller/addExperience';
 // import edu from '../controller/addEducation';
 // import delEdu from '../controller/deleteEducation';
@@ -23,7 +29,6 @@ import userHistory from '../controller/userHistory';
 // import delComment from '../controller/delComment';
 
 import auth from '../middleware/auth'
-
 const router = express.Router();
 
 router.post('/admin/signup', admin);
@@ -32,7 +37,13 @@ router.post('/register', userRegister);
 router.post('/admin', adminLogin);
 router.post('/records',auth, records);
 router.get('/view/all',[auth, adminAuth], adminView);
-router.get('/history',auth, userHistory);
+router.get('/csv',auth, csv);
+router.post('/history',auth, userHistory);
+router.post('/filter-date',auth, filterDate);
+router.patch('/clock-in',auth, userClockIn);
+router.patch('/edit-profile',auth, editProfile);
+router.patch('/change-password',auth, changePassword);
+
 // router.patch('/logout', auth, clockOut);
 router.patch('/update', auth, updateAdminRecords);
 

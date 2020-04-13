@@ -9,7 +9,7 @@ $(function() {
     var end = moment();
 
     function cb(start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        $('#reportrange span').html(start.format('YYYY-MM-D') + ' - ' + end.format('YYYY-MM-D'));
     }
 
     $('#reportrange').daterangepicker({
@@ -29,6 +29,88 @@ $(function() {
 
 });
 
-$(document).on('click', '#fil', function() {
-    $( ".tog" ).toggle();
+
+$(document).on('click', '#clock_in', function() {
+    event.preventDefault();
+    $( "#loading_filter" ).show();
+    const token = JSON.parse(localStorage.getItem('authToken'));
+            fetch(
+             `http://localhost:5000/api/v1/clock-in`, {
+              method: 'PATCH',
+              headers: {
+                "Content-Type": 'application/json', 
+                  "Authorization": token
+                },
+            })
+                .then(res => res.json())
+                .then(response => {
+                  console.log(response)
+                  if (response.status === 200) {
+                      $('.tm').html(`Your clock in time for today is `);
+                      $('.tm').css('color', 'green');
+                      $( "#loading_filter" ).hide();
+                      $('.tm').show();
+                    setTimeout(() => {
+                        $('.tm').hide();
+                }, 4000);
+				window.location = "../html/dashboard-3.html";
+                
+                    } else {
+                        $('.tm').html(`${response.error}`);
+                        $('.tm').css('color', 'red');
+                        $( "#loading_filter" ).hide();
+                        $('.tm').show();
+                      setTimeout(() => {
+                          $('.tm').hide();
+                  }, 4000);
+				// window.location = "../html/dashboard-3.html";
+                    }
+                })
+                .catch(error => console.log(error.message));
+        
+  
 });
+$(document).on('click', '#clock_out', function() {
+    event.preventDefault();
+    $( "#loading_filter" ).show();
+    const token = JSON.parse(localStorage.getItem('authToken'));
+            fetch(
+             `http://localhost:5000/api/v1/update`, {
+              method: 'PATCH',
+              headers: {
+                "Content-Type": 'application/json', 
+                  "Authorization": token
+                },
+            })
+                .then(res => res.json())
+                .then(response => {
+                  console.log(response)
+                  if (response.status === 200) {
+                      $('.tm').html(`Your clock in time for today is ${response.clock_in_time}`);
+                      $('.tm').css('color', 'green');
+                      $( "#loading_filter" ).hide();
+                      $('.tm').show();
+                    setTimeout(() => {
+                        $('.tm').hide();
+                }, 4000);
+				window.location = "../html/dashboard-3.html";
+                
+                    } else {
+                        $('.tm').html(`${response.error}`);
+                        $('.tm').css('color', 'red');
+                        $( "#loading_filter" ).hide();
+                        $('.tm').show();
+                      setTimeout(() => {
+                          $('.tm').hide();
+                  }, 4000);
+				// window.location = "../html/dashboard-3.html";
+                    }
+                })
+                .catch(error => console.log(error.message));
+        
+  
+    
+});
+
+
+

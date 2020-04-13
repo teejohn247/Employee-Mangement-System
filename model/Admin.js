@@ -24,6 +24,10 @@ const AdminSchema = new mongoose.Schema({
     date:{
         type: Date,
         default:moment().format('YYYY-MM-DD')
+    },
+    creation_date:{
+        type: Date,
+        default: new Date()
     }
 });
 

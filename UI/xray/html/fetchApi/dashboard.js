@@ -26,7 +26,7 @@ $(document).on('click', '#go', function() {
         // $( "#loading_filter" ).show();
         const token = JSON.parse(localStorage.getItem('authToken'));
                 fetch(
-                 `http://localhost:5000/api/v1/csv`, {
+                 `https://ems-employee-management-system.herokuapp.com/api/v1/csv`, {
                   method: 'GET',
                   headers: {
                     "Content-Type": 'application/json', 
@@ -88,7 +88,7 @@ function filter(page){
     
     
     fetch(
-     "http://localhost:5000/api/v1/filter-date", {
+     "https://ems-employee-management-system.herokuapp.com/api/v1/filter-date", {
       method: 'POST',
       headers: {
 		  "Content-Type": "application/json",
@@ -154,7 +154,7 @@ window.onload = () => {
     
         const token = JSON.parse(localStorage.getItem('authToken'));
     fetch(
-     "http://localhost:5000/api/v1/history", {
+     "https://ems-employee-management-system.herokuapp.com/api/v1/history", {
       method: 'POST',
       headers: {
 		  "Content-Type": "application/json",
@@ -283,7 +283,7 @@ function load(page){
     
         const token = JSON.parse(localStorage.getItem('authToken'));
     fetch(
-     "http://localhost:5000/api/v1/history", {
+     "https://ems-employee-management-system.herokuapp.com/api/v1/history", {
       method: 'POST',
       headers: {
 		  "Content-Type": "application/json",

@@ -35,7 +35,7 @@ $(document).on('click', '#clock_in', function() {
     $( "#loading_filter" ).show();
     const token = JSON.parse(localStorage.getItem('authToken'));
             fetch(
-             `http://localhost:5000/api/v1/clock-in`, {
+             `https://ems-employee-management-system.herokuapp.com/api/v1/clock-in`, {
               method: 'PATCH',
               headers: {
                 "Content-Type": 'application/json', 
@@ -75,7 +75,7 @@ $(document).on('click', '#clock_out', function() {
     $( "#loading_filter" ).show();
     const token = JSON.parse(localStorage.getItem('authToken'));
             fetch(
-             `http://localhost:5000/api/v1/update`, {
+             `https://ems-employee-management-system.herokuapp.com/api/v1/update`, {
               method: 'PATCH',
               headers: {
                 "Content-Type": 'application/json', 

@@ -14,6 +14,12 @@ import editProfile from '../controller/editProfile';
 import userClockIn from '../controller/userClockIn';
 import changePassword from '../controller/changePassword';
 import csv from '../controller/downloadCsv';
+import adminHistory from '../controller/adminHistory';
+import adminEdit from '../controller/adminEdit';
+import adminPassword from '../controller/adminPassword';
+import adminFilter from '../controller/adminFilter';
+import admins from '../controller/totalAdmins';
+import users from '../controller/totalUsers';
 
 
 // import exp from '../controller/addExperience';
@@ -37,6 +43,12 @@ router.post('/register', userRegister);
 router.post('/admin', adminLogin);
 router.post('/records',auth, records);
 router.get('/view/all',[auth, adminAuth], adminView);
+router.patch('/admin/edit-profile',[auth, adminAuth], adminEdit);
+router.post('/admin/history', [auth, adminAuth], adminHistory);
+router.post('/admin/filter-date',[auth, adminAuth], adminFilter);
+router.get('/admin/admins',[auth, adminAuth], admins);
+router.get('/admin/users',[auth, adminAuth], users);
+router.patch('/admin/change-password',[auth, adminAuth], adminPassword);
 router.get('/csv',auth, csv);
 router.post('/history',auth, userHistory);
 router.post('/filter-date',auth, filterDate);

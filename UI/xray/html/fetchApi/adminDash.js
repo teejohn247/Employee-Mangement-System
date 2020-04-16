@@ -1,9 +1,52 @@
 $(document).on('ready', function() {
-    if (!is_loggedin) {
-        window.location.href = '../html/userSignin.html';
-        }
-        
+    var admin = localStorage.getItem('admin')
+    if (!is_loggedin || !admin) {
+        // window.location.href = '../html/sign-in.html';
+        alert('Access denied')
+        }else{
 
+                const token = JSON.parse(localStorage.getItem('adminToken'));
+              fetch(
+               "http://localhost:5000/api/v1/admin/admins", {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token
+                  },
+              })
+              .then(response => response.json())
+              .then(data => {
+              console.log(data)
+              localStorage.setItem('total_admins', `${data.length}`)
+                  
+                //   $('#adm').html(`${data.length}`)
+                //   $('#pagination').twbsPagination('destroy');
+                //   load("");
+              })
+              
+              .catch(error => console.log(error.message));
+              event.preventDefault();
+
+              fetch(
+                "http://localhost:5000/api/v1/admin/users", {
+                 method: 'GET',
+                 headers: {
+                     "Content-Type": "application/json",
+                     "Authorization": token
+                   },
+               })
+               .then(response => response.json())
+               .then(data => {
+               console.log(data)
+                   
+              localStorage.setItem('total_users', `${data.length}`)
+                  
+               })
+               
+               .catch(error => console.log(error.message));
+               event.preventDefault();
+          
+        }
 })
 $(document).ready(function() {
     $('#pagination').twbsPagination('destroy');
@@ -24,9 +67,9 @@ $(document).on('click', '#go', function() {
     function download(){
         // e.preventDefault();
         // $( "#loading_filter" ).show();
-        const token = JSON.parse(localStorage.getItem('authToken'));
+        const token = JSON.parse(localStorage.getItem('adminToken'));
                 fetch(
-                 `https://ems-employee-management-system.herokuapp.com/api/v1/csv`, {
+                 `http://localhost:5000/api/v1/csv`, {
                   method: 'GET',
                   headers: {
                     "Content-Type": 'application/json', 
@@ -37,7 +80,7 @@ $(document).on('click', '#go', function() {
                     .then(response => {
                       console.log(response)
                       if(response){
-                          $('#csv').attr('href', `https://teejohn247.github.io/Employee-Mangement-System/public${response}`)
+                          $('#csv').attr('href', response)
                       }
                       else{
                           alert('error')
@@ -68,12 +111,15 @@ function filter(page){
         var page = 1;
     }
     var limit = 7;
-    const token = JSON.parse(localStorage.getItem('authToken'));
+    const token = JSON.parse(localStorage.getItem('adminToken'));
     var start = $('#reportrange').data('daterangepicker').startDate._d;
     var end = $('#reportrange').data('daterangepicker').endDate._d;
     // const startDate = document.querySelector('#reportrange span');
     var startDat = moment(start).format('YYYY-MM-D');
     var endDat = moment(end).format('YYYY-MM-D');
+    var email = document.querySelector('#mail').value;
+    var depart = document.querySelector('#depart').value;
+
     var starting = document.querySelector('#starting');
     var ending = document.querySelector('#ending');
 
@@ -88,13 +134,13 @@ function filter(page){
     
     
     fetch(
-     "http://localhost:5000/api/v1/filter-date", {
+     "http://localhost:5000/api/v1/admin/filter-date", {
       method: 'POST',
       headers: {
 		  "Content-Type": "application/json",
           "Authorization": token
         },
-        body: JSON.stringify({ startDate: startDat, endDate:endDat, limit: limit, page: page 
+        body: JSON.stringify({ startDate: startDat, endDate:endDat, email: email, department: depart, limit: limit, page: page
         })
     })
 
@@ -118,8 +164,7 @@ function filter(page){
         <td>${department}</td>
         <td>${clock_in_time}</td>
         <td>${clock_out_time == undefined ? 'Not Available': clock_out_time}</td>
-        <td>${date}</td>
-                            `
+        <td>${date}</td>`
         
         $('.filter').html(add_tab);
         $('#pagination_').twbsPagination({
@@ -153,9 +198,19 @@ window.onload = () => {
     }
     var limit = 7;
     
-        const token = JSON.parse(localStorage.getItem('authToken'));
+        const token = JSON.parse(localStorage.getItem('adminToken'));
+        const total_admins = localStorage.getItem('total_admins');
+        const total_users = localStorage.getItem('total_users');
+        console.log(total_users)
+        console.log(total_admins)
+
+
+        $('#adm').html(total_admins);
+        $('#emp').html(total_users);
+
+
     fetch(
-     "https://ems-employee-management-system.herokuapp.com/api/v1/history", {
+     "http://localhost:5000/api/v1/admin/history", {
       method: 'POST',
       headers: {
 		  "Content-Type": "application/json",
@@ -192,8 +247,8 @@ window.onload = () => {
         margin-left:'auto'; margin-right:'auto'; border-radius:100px;">
         </div>`
         h4.innerHTML = `<b>${profile_name}</b>`;
-        h3.innerHTML = `${depart}`;
-        clock_in_h3.innerHTML = `${clock_in}`;
+        // h3.innerHTML = `${depart}`;
+        // clock_in_h3.innerHTML = `${clock_in}`;
         // console.log(`${clock_in}`.toLocaleDateString())
 
         prof.appendChild(h4);
@@ -258,10 +313,7 @@ window.onload = () => {
             
 
         })
-
-        
-
-        
+   
     }
     
     
@@ -271,6 +323,8 @@ window.onload = () => {
             })
         .catch(error => console.log(error.message));
     // event.preventDefault();
+
+    
  
 }
 function load(page){
@@ -282,9 +336,9 @@ function load(page){
     $("#loading_filter").show();
 
     
-        const token = JSON.parse(localStorage.getItem('authToken'));
+        const token = JSON.parse(localStorage.getItem('adminToken'));
     fetch(
-     "https://ems-employee-management-system.herokuapp.com/api/v1/history", {
+     "http://localhost:5000/api/v1/admin/history", {
       method: 'POST',
       headers: {
 		  "Content-Type": "application/json",

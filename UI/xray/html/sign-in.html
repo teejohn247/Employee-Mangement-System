@@ -34,9 +34,9 @@
                             <a class="sign-in-logo mb-5" href="#"><img src="images/logo-white.png" class="img-fluid" alt="logo"></a>
                             <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true" data-items="1" data-items-laptop="1" data-items-tab="1" data-items-mobile="1" data-items-mobile-sm="1" data-margin="0">
                                 <div class="item">
-                                    <img src="images/login/sign.jpg" class="img-fluid mb-4" alt="logo">
-                                    <h4 class="mb-1 text-white">Manage your orders</h4>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                                    <img src="images/login/sign.jpg" class="img-fluid mb-4" alt="logo" style="border-radius: 20px; box-shadow:0 4px 8px rgba(0,0,0,0.19);">
+                                    <h4 class="mb-1 text-white">Xray Attendance System</h4>
+                                    <p>Attendance processing is effective only when it's real-time.</p>
                                 </div>
                                 <!-- <div class="item">
                                     <img src="images/login/2.png" class="img-fluid mb-4" alt="logo">
@@ -72,10 +72,13 @@
                                         <input type="checkbox" class="custom-control-input" id="customCheck1">
                                         <label class="custom-control-label" for="customCheck1">Remember Me</label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary float-right">Sign in</button>
+                                    <i id="loading_filter" class="fa fa-spinner fa-spin fa-fw fa-3x" style="margin-left: 350px; display: none;"></i>
+
+                                    <button type="submit" id="sign_button" class="btn btn-primary float-right">Sign in</button>
+
                                 </div>
                                 <div class="sign-info">
-                                    <span class="dark-color d-inline-block line-height-2">Don't have an account? <a href="#">Sign up</a></span>
+                                    <span class="dark-color d-inline-block line-height-2">Don't have an account? <a href="sign-up.html">Sign up</a></span>
                                     <ul class="iq-social-media">
                                         <li><a href="#"><i class="ri-facebook-box-line"></i></a></li>
                                         <li><a href="#"><i class="ri-twitter-line"></i></a></li>

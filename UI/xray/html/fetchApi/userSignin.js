@@ -3,7 +3,10 @@ const email = document.querySelector(".email");
 const password = document.querySelector(".password");
 const loginError = document.querySelector(".login-error");
 
-
+$(document).on('click', '#sign_in', function() {
+	$(this).hide();
+	$('#loading_filter').show();
+    });
 
 signin.addEventListener("submit", event => {
     fetch(
@@ -39,6 +42,8 @@ signin.addEventListener("submit", event => {
        
 			
 		 } else {
+			$('#loading_filter').hide();
+			$('#sign_in').show();
 			loginError.innerHTML = data.error;
 			loginError.style.display = "block";
 

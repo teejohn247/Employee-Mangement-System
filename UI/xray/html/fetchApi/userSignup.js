@@ -5,6 +5,11 @@ const password = document.querySelector(".password");
 const name = document.querySelector(".user_name");
 const loginError = document.querySelector(".login-error");
 
+$(document).on('click', '#sign_up', function() {
+	$(this).hide();
+	$('#loading_filter').show();
+    });
+
 
 signup.addEventListener("submit", event => {
     fetch(
@@ -20,6 +25,8 @@ signup.addEventListener("submit", event => {
 		.then(data => {
             console.log(data);
       if (data.status !== 201) {
+		$('#loading_filter').hide();
+		$('#sign_up').show();
         loginError.innerHTML = data.error;
 			loginError.style.display = "block";
 

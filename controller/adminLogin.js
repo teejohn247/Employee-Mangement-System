@@ -26,7 +26,7 @@ const user = async (req, res) => {
                error: 'Invalid login credentials'
            })
         }
-        const token = utils.encodeToken( user.id, user.name, user.admin );
+        const token = utils.encodeToken( user.id, user.name, user.email, user.admin );
         res.status(200).json({
             token,
             user

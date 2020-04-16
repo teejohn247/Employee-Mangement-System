@@ -44,13 +44,13 @@ const filterDate = async(req, res) => {
         
 
         
-       const records = await AdminRecords.find({"creation_date": {$gte: new Date(startDate), $lt: new Date(time)} }).sort({date: -1})
+       const records = await AdminRecords.find({"email": req.payload.email, "creation_date": {$gte: new Date(startDate), $lt: new Date(time)} }).sort({date: -1})
         .limit(limit * 1)
         .skip((page - 1) * limit)
         .exec();
         console.log(records)
 
-        const count = await AdminRecords.find({"creation_date": {$gte: new Date(startDate), $lt: new Date(time)} }).countDocuments();
+        const count = await AdminRecords.find({"email": req.payload.email,"creation_date": {$gte: new Date(startDate), $lt: new Date(time)} }).countDocuments();
         console.log(count)
 
 

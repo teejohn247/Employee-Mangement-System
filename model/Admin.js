@@ -17,6 +17,18 @@ const AdminSchema = new mongoose.Schema({
     avatar:{
         type:String,
     },
+    gender:{
+        type:String,
+    },
+    address:{
+        type:String,
+    },
+    age:{
+        type:String,
+    },
+    state_of_origin:{
+        type:String,
+    },
     admin:{
         type:Boolean,
         default:true

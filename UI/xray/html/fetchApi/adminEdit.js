@@ -34,7 +34,7 @@ $(document).ready(function() {
     
         
         fetch(
-         `http://localhost:5000/api/v1/admin/edit-profile`, {
+         `https://ems-employee-management-system.herokuapp.com/api/v1/admin/edit-profile`, {
           method: 'PATCH',
           headers: {
             "Content-Type": 'application/json', 
@@ -89,7 +89,7 @@ $(document).ready(function() {
     
                 
                 fetch(
-                 `http://localhost:5000/api/v1/admin/change-password`, {
+                 `https://ems-employee-management-system.herokuapp.com/api/v1/admin/change-password`, {
                   method: 'PATCH',
                   headers: {
                     "Content-Type": 'application/json', 

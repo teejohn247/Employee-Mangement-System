@@ -10,7 +10,7 @@ $(document).on('click', '#sign_button', function() {
 
 signin.addEventListener("submit", event => {
     fetch(
-    "http://localhost:5000/api/v1/admin", {
+    "https://ems-employee-management-system.herokuapp.com/api/v1/admin", {
         method: "POST",
 		headers: {
 			"Content-Type": "application/json"

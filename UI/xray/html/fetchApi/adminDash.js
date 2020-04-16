@@ -7,7 +7,7 @@ $(document).on('ready', function() {
 
                 const token = JSON.parse(localStorage.getItem('adminToken'));
               fetch(
-               "http://localhost:5000/api/v1/admin/admins", {
+               "https://ems-employee-management-system.herokuapp.com/api/v1/admin/admins", {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
@@ -28,7 +28,7 @@ $(document).on('ready', function() {
               event.preventDefault();
 
               fetch(
-                "http://localhost:5000/api/v1/admin/users", {
+                "https://ems-employee-management-system.herokuapp.com/api/v1/admin/users", {
                  method: 'GET',
                  headers: {
                      "Content-Type": "application/json",
@@ -134,7 +134,7 @@ function filter(page){
     
     
     fetch(
-     "http://localhost:5000/api/v1/admin/filter-date", {
+     "https://ems-employee-management-system.herokuapp.com/api/v1/filter-date", {
       method: 'POST',
       headers: {
 		  "Content-Type": "application/json",
@@ -210,7 +210,7 @@ window.onload = () => {
 
 
     fetch(
-     "http://localhost:5000/api/v1/admin/history", {
+     "https://ems-employee-management-system.herokuapp.com/api/v1/admin/history", {
       method: 'POST',
       headers: {
 		  "Content-Type": "application/json",
@@ -338,7 +338,7 @@ function load(page){
     
         const token = JSON.parse(localStorage.getItem('adminToken'));
     fetch(
-     "http://localhost:5000/api/v1/admin/history", {
+     "https://ems-employee-management-system.herokuapp.com/api/v1/admin/history", {
       method: 'POST',
       headers: {
 		  "Content-Type": "application/json",

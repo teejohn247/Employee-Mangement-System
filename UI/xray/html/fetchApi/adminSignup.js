@@ -32,7 +32,7 @@ signup.addEventListener("submit", event => {
 			} else {
 				console.log(data);
 				
-				window.location = "../UI/sign-in.html";
+				window.location = "../sign-in.html";
 			}
 			})
 		.catch(error => console.log(error.message));

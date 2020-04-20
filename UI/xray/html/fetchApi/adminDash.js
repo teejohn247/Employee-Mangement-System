@@ -134,7 +134,7 @@ function filter(page){
     
     
     fetch(
-     "https://ems-employee-management-system.herokuapp.com/api/v1/filter-date", {
+     "https://ems-employee-management-system.herokuapp.com/api/v1/admin/filter-date", {
       method: 'POST',
       headers: {
 		  "Content-Type": "application/json",
